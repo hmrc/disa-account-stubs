@@ -12,7 +12,8 @@ object CodeCoverageSettings {
     ".*Routes.*",
     "testOnly.*",
     "testOnlyDoNotUseInAppConf.*",
-    "uk.gov.hmrc.BuildInfo"
+    "uk.gov.hmrc.BuildInfo",
+    "uk.gov.hmrc.disaaccountstubs.config.AppConfig"
   )
 
   val settings: Seq[Setting[?]] = Seq(
