@@ -1,3 +1,3 @@
 # microservice specific routes
 
-
+GET     /etmp/registration/:zref    uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.retrieveRegistrationDetails(zref: String)
