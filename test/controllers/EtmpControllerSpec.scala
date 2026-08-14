@@ -22,13 +22,13 @@ import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 import uk.gov.hmrc.disaaccountstubs.controllers.routes.EtmpController
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.JourneyData
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.RegistrationDetails
 
 class EtmpControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   "EtmpController.retrieveRegistrationDetails" should {
 
-    "return 200 with a JourneyData payload containing the requested zref" in {
+    "return 200 with a RegistrationDetails payload containing the requested zref" in {
       val zref    = "Z1234"
       val request = FakeRequest(GET, EtmpController.retrieveRegistrationDetails(zref).url)
 
@@ -37,7 +37,7 @@ class EtmpControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
       status(result) mustBe OK
       contentType(result) mustBe Some("application/json")
 
-      val journeyData = contentAsJson(result).as[JourneyData]
+      val journeyData = contentAsJson(result).as[RegistrationDetails]
       journeyData.organisationDetails.flatMap(_.zRefNumber) mustBe Some(zref)
     }
 

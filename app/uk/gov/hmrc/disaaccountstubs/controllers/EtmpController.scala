@@ -21,13 +21,13 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.NotFoundZref
 import uk.gov.hmrc.disaaccountstubs.models.YesNoAnswer
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.isaProducts.{InnovativeFinancialProduct, IsaProduct, IsaProducts}
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.liaisonofficers.{LiaisonOfficer, LiaisonOfficerCommunication, LiaisonOfficers}
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.orgdetails.OrganisationDetails
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.signatories.{Signatories, Signatory}
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.thirdparty.{ThirdParty, ThirdPartyOrganisations}
-import uk.gov.hmrc.disaaccountstubs.models.journeyData.{BusinessVerification, CorrespondenceAddress, JourneyData, OrganisationEmail}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{InnovativeFinancialProduct, IsaProduct, IsaProducts}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{LiaisonOfficer, LiaisonOfficerCommunication, LiaisonOfficers}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.orgdetails.OrganisationDetails
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.signatories.{Signatories, Signatory}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.thirdparty.{ThirdParty, ThirdPartyOrganisations}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{BusinessVerification, CorrespondenceAddress, OrganisationEmail, RegistrationDetails}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.Instant
@@ -52,8 +52,8 @@ class EtmpController @Inject() (
     }
   }
 
-  private def registrationDetails(zref: String): JourneyData =
-    JourneyData(
+  private def registrationDetails(zref: String): RegistrationDetails =
+    RegistrationDetails(
       groupId = UUID.randomUUID().toString,
       businessVerification = Some(
         BusinessVerification(
