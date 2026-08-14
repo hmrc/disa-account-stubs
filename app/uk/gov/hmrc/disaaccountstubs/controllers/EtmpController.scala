@@ -43,11 +43,15 @@ class EtmpController @Inject() (
   def retrieveRegistrationDetails(zref: String): Action[AnyContent] = Action { implicit request =>
     zref match {
       case NotFoundZref =>
-        logger.info(s"Returning registration details not found response for zref: [$zref]")
+        logger.info(
+          s"[EtmpController][retrieveRegistrationDetails] Returning registration details not found response for zref: [$zref]"
+        )
         NotFound
 
       case _ =>
-        logger.info(s"Returning registration details success response for zref: [$zref]")
+        logger.info(
+          s"[EtmpController][retrieveRegistrationDetails] Returning registration details success response for zref: [$zref]"
+        )
         Ok(Json.toJson(registrationDetails(zref)))
     }
   }
