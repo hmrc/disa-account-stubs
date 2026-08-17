@@ -25,17 +25,15 @@ class CertificatesOfAuthorityYesNoSpec extends AnyWordSpec with Matchers {
 
   "CertificatesOfAuthorityYesNo" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       CertificatesOfAuthorityYesNo.values.foreach { value =>
         Json.toJson[CertificatesOfAuthorityYesNo](value).as[CertificatesOfAuthorityYesNo] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       CertificatesOfAuthorityYesNo.values.foreach { value =>
         Json.toJson[CertificatesOfAuthorityYesNo](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[CertificatesOfAuthorityYesNo] mustBe a[JsError]

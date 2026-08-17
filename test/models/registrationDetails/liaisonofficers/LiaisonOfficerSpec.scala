@@ -19,10 +19,7 @@ package models.registrationDetails.liaisonofficers
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.{JsObject, Json}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{
-  LiaisonOfficer,
-  LiaisonOfficerCommunication
-}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{LiaisonOfficer, LiaisonOfficerCommunication}
 
 class LiaisonOfficerSpec extends AnyWordSpec with Matchers {
 

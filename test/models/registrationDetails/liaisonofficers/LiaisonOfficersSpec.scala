@@ -25,7 +25,13 @@ class LiaisonOfficersSpec extends AnyWordSpec with Matchers {
 
   private val model = LiaisonOfficers(
     liaisonOfficers = Seq(
-      LiaisonOfficer(id = "1", fullName = Some("Jane Smith"), phoneNumber = None, communication = Set.empty, email = None)
+      LiaisonOfficer(
+        id = "1",
+        fullName = Some("Jane Smith"),
+        phoneNumber = None,
+        communication = Set.empty,
+        email = None
+      )
     )
   )
 

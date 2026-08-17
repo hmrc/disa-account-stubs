@@ -35,16 +35,16 @@ class OrganisationDetailsSpec extends AnyWordSpec with Matchers {
   )
 
   private val json: JsObject = Json.obj(
-    "zRefNumber"             -> "Z1234",
-    "tradingName"            -> "Acme Ltd",
-    "fcaNumber"              -> "FCA123456",
-    "correspondenceAddress"  -> Json.obj(
+    "zRefNumber"            -> "Z1234",
+    "tradingName"           -> "Acme Ltd",
+    "fcaNumber"             -> "FCA123456",
+    "correspondenceAddress" -> Json.obj(
       "addressLine1" -> "1 Test Street",
       "addressLine2" -> "Test Town",
       "addressLine3" -> "Testshire",
       "postCode"     -> "AB1 2CD"
     ),
-    "orgTelephoneNumber"     -> "01234567890"
+    "orgTelephoneNumber"    -> "01234567890"
   )
 
   "OrganisationDetails" should {

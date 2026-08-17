@@ -19,12 +19,7 @@ package models.registrationDetails.certificatesofauthority
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.{JsObject, Json}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{
-  CertificatesOfAuthority,
-  CertificatesOfAuthorityYesNo,
-  FcaArticles,
-  FinancialOrganisation
-}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
 
 class CertificatesOfAuthoritySpec extends AnyWordSpec with Matchers {
 
@@ -35,9 +30,9 @@ class CertificatesOfAuthoritySpec extends AnyWordSpec with Matchers {
   )
 
   private val json: JsObject = Json.obj(
-    "certificatesYesNo"      -> "yes",
-    "fcaArticles"            -> Seq("article14", "article21"),
-    "financialOrganisation"  -> Seq("bank")
+    "certificatesYesNo"     -> "yes",
+    "fcaArticles"           -> Seq("article14", "article21"),
+    "financialOrganisation" -> Seq("bank")
   )
 
   "CertificatesOfAuthority" should {

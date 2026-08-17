@@ -25,17 +25,15 @@ class IsaProductSpec extends AnyWordSpec with Matchers {
 
   "IsaProduct" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       IsaProduct.values.foreach { value =>
         Json.toJson[IsaProduct](value).as[IsaProduct] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       IsaProduct.values.foreach { value =>
         Json.toJson[IsaProduct](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[IsaProduct] mustBe a[JsError]

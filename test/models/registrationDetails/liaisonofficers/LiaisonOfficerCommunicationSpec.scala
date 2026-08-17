@@ -25,17 +25,15 @@ class LiaisonOfficerCommunicationSpec extends AnyWordSpec with Matchers {
 
   "LiaisonOfficerCommunication" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       LiaisonOfficerCommunication.values.foreach { value =>
         Json.toJson[LiaisonOfficerCommunication](value).as[LiaisonOfficerCommunication] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       LiaisonOfficerCommunication.values.foreach { value =>
         Json.toJson[LiaisonOfficerCommunication](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[LiaisonOfficerCommunication] mustBe a[JsError]

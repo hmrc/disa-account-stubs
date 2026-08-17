@@ -25,17 +25,15 @@ class FinancialOrganisationSpec extends AnyWordSpec with Matchers {
 
   "FinancialOrganisation" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       FinancialOrganisation.values.foreach { value =>
         Json.toJson[FinancialOrganisation](value).as[FinancialOrganisation] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       FinancialOrganisation.values.foreach { value =>
         Json.toJson[FinancialOrganisation](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[FinancialOrganisation] mustBe a[JsError]

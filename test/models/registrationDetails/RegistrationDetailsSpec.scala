@@ -20,10 +20,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.Json
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{BusinessVerification, OrganisationEmail, RegistrationDetails}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{
-  CertificatesOfAuthority,
-  CertificatesOfAuthorityYesNo
-}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{IsaProduct, IsaProducts}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{LiaisonOfficer, LiaisonOfficers}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.orgdetails.OrganisationDetails

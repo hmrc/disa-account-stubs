@@ -25,17 +25,15 @@ class InnovativeFinancialProductSpec extends AnyWordSpec with Matchers {
 
   "InnovativeFinancialProduct" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       InnovativeFinancialProduct.values.foreach { value =>
         Json.toJson[InnovativeFinancialProduct](value).as[InnovativeFinancialProduct] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       InnovativeFinancialProduct.values.foreach { value =>
         Json.toJson[InnovativeFinancialProduct](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[InnovativeFinancialProduct] mustBe a[JsError]

@@ -19,11 +19,7 @@ package models.registrationDetails.isaProducts
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.libs.json.{JsObject, Json}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{
-  InnovativeFinancialProduct,
-  IsaProduct,
-  IsaProducts
-}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{InnovativeFinancialProduct, IsaProduct, IsaProducts}
 
 class IsaProductsSpec extends AnyWordSpec with Matchers {
 
@@ -35,10 +31,10 @@ class IsaProductsSpec extends AnyWordSpec with Matchers {
   )
 
   private val json: JsObject = Json.obj(
-    "isaProducts"                  -> Seq("cashIsas", "innovativeFinanceIsas"),
-    "innovativeFinancialProducts"  -> Seq("crowdfundedDebentures"),
-    "p2pPlatform"                  -> "Test Platform",
-    "p2pPlatformNumber"            -> "PN12345"
+    "isaProducts"                 -> Seq("cashIsas", "innovativeFinanceIsas"),
+    "innovativeFinancialProducts" -> Seq("crowdfundedDebentures"),
+    "p2pPlatform"                 -> "Test Platform",
+    "p2pPlatformNumber"           -> "PN12345"
   )
 
   "IsaProducts" should {

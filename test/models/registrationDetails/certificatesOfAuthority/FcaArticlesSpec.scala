@@ -25,17 +25,15 @@ class FcaArticlesSpec extends AnyWordSpec with Matchers {
 
   "FcaArticles" should {
 
-    "round-trip every value through JSON" in {
+    "round-trip every value through JSON" in
       FcaArticles.values.foreach { value =>
         Json.toJson[FcaArticles](value).as[FcaArticles] mustBe value
       }
-    }
 
-    "serialise each value to its name" in {
+    "serialise each value to its name" in
       FcaArticles.values.foreach { value =>
         Json.toJson[FcaArticles](value) mustBe JsString(value.toString)
       }
-    }
 
     "fail to deserialise an invalid value" in {
       JsString("invalid").validate[FcaArticles] mustBe a[JsError]
