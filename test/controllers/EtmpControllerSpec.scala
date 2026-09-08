@@ -37,6 +37,7 @@ class EtmpControllerSpec extends BaseUnitSpec {
 
       val journeyData = contentAsJson(result).as[RegistrationDetails]
       journeyData.organisationDetails.flatMap(_.zRefNumber) mustBe Some(zref)
+      journeyData.signatories.flatMap(_.signatories.headOption).flatMap(_.email) mustBe Some("signatory@example.com")
     }
 
     "return 404 when the zref is not found" in {

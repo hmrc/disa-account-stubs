@@ -23,12 +23,18 @@ import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.signatories.Signa
 
 class SignatorySpec extends AnyWordSpec with Matchers {
 
-  private val model = Signatory(id = "1", fullName = Some("John Doe"), jobTitle = Some("Director"))
+  private val model = Signatory(
+    id = "1",
+    fullName = Some("John Doe"),
+    jobTitle = Some("Director"),
+    email = Some("john.doe@example.com")
+  )
 
   private val json: JsObject = Json.obj(
     "id"       -> "1",
     "fullName" -> "John Doe",
-    "jobTitle" -> "Director"
+    "jobTitle" -> "Director",
+    "email"    -> "john.doe@example.com"
   )
 
   "Signatory" should {
