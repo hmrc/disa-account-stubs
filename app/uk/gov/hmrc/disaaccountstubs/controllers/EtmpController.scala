@@ -52,7 +52,6 @@ class EtmpController @Inject() (
         logger.info(
           s"[EtmpController][retrieveRegistrationDetails] Returning registration details success response for zref: [$zref]"
         )
-        println(Json.toJson(registrationDetails(zref)))
         Ok(Json.toJson(registrationDetails(zref)))
     }
   }
