@@ -27,7 +27,7 @@ import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.orgdetails.OrganisationDetails
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.signatories.{Signatories, Signatory}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.thirdparty.{ThirdParty, ThirdPartyOrganisations}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{BusinessVerification, CorrespondenceAddress, OrganisationEmail, RegistrationDetails}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{BusinessVerification, CorrespondenceAddress, OrganisationEmail, RegistrationDetails, UpdateRegistrationDetailsRequest}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.Instant
@@ -55,6 +55,14 @@ class EtmpController @Inject() (
         Ok(Json.toJson(registrationDetails(zref)))
     }
   }
+
+  def updateRegistrationDetails(zref: String): Action[UpdateRegistrationDetailsRequest] =
+    Action(parse.json[UpdateRegistrationDetailsRequest]) { _ =>
+      zref match {
+        case NotFoundZref => NotFound
+        case _            => Ok
+      }
+    }
 
   private def registrationDetails(zref: String): RegistrationDetails =
     RegistrationDetails(

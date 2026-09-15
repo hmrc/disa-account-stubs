@@ -75,6 +75,16 @@ sbt scalafmtSbt
 # formats just the main source files (excludes test and configuration files)
 sbt scalafmt
 ```
+
+### PUT /etmp/registration/:zref
+
+Simulates updating an ETMP registration. For now, the JSON request body contains the account's effective answers; this may change when the ETMP contract is confirmed.
+
+| Scenario               | `zref` value             | HTTP status     | Description                    |
+| ---------------------- | ------------------------ | --------------- | ------------------------------ |
+| Registration found     | any value except `Z0404` | `200 OK`        | The update was accepted        |
+| Registration not found | `Z0404`                  | `404 Not Found` | The registration was not found |
+
 ### POST /email-verification/v2/send-code
 
 Simulates sending an email verification code.

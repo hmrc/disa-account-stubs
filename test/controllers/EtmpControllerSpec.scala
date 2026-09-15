@@ -16,10 +16,11 @@
 
 package controllers
 
+import play.api.libs.json.Json
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 import uk.gov.hmrc.disaaccountstubs.controllers.routes.EtmpController
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.RegistrationDetails
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{RegistrationDetails, UpdateRegistrationDetailsRequest}
 import utils.BaseUnitSpec
 
 class EtmpControllerSpec extends BaseUnitSpec {
@@ -46,6 +47,22 @@ class EtmpControllerSpec extends BaseUnitSpec {
       val result = route(app, request).get
 
       status(result) mustBe NOT_FOUND
+    }
+  }
+
+  "EtmpController.updateRegistrationDetails" should {
+    "return 200 when the registration is found" in {
+      val request = FakeRequest(PUT, EtmpController.updateRegistrationDetails("Z1234").url)
+        .withJsonBody(Json.toJson(UpdateRegistrationDetailsRequest(tradingName = Some("Updated name"))))
+
+      status(route(app, request).get) mustBe OK
+    }
+
+    "return 404 when the zref is not found" in {
+      val request = FakeRequest(PUT, EtmpController.updateRegistrationDetails("Z0404").url)
+        .withJsonBody(Json.toJson(UpdateRegistrationDetailsRequest()))
+
+      status(route(app, request).get) mustBe NOT_FOUND
     }
   }
 }
