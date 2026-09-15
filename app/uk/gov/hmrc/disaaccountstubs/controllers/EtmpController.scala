@@ -115,7 +115,12 @@ class EtmpController @Inject() (
       signatories = Some(
         Signatories(
           signatories = Seq(
-            Signatory(id = UUID.randomUUID().toString, fullName = Some("Test Signatory"), jobTitle = Some("Director"))
+            Signatory(
+              id = UUID.randomUUID().toString,
+              fullName = Some("Test Signatory"),
+              jobTitle = Some("Director"),
+              email = Some("signatory@example.com")
+            )
           )
         )
       ),
