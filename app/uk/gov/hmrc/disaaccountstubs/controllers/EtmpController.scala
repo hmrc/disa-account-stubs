@@ -86,7 +86,7 @@ class EtmpController @Inject() (
       organisationEmail = Some(OrganisationEmail(organisationEmail = Some("test@example.com"), verified = Some(true))),
       isaProducts = Some(
         IsaProducts(
-          isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.StocksAndSharesIsas)),
+          isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.StocksAndSharesIsas, IsaProduct.InnovativeFinanceIsas)),
           innovativeFinancialProducts = Some(Seq(InnovativeFinancialProduct.CrowdFundedDebentures)),
           p2pPlatform = None,
           p2pPlatformNumber = None
