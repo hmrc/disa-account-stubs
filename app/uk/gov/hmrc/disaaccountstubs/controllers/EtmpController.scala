@@ -19,9 +19,10 @@ package uk.gov.hmrc.disaaccountstubs.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.NotFoundZref
+import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{NotFoundZref, UnderReviewZref}
 import uk.gov.hmrc.disaaccountstubs.models.YesNoAnswer
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.IsaProduct.InnovativeFinanceIsas
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{InnovativeFinancialProduct, IsaProduct, IsaProducts}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{LiaisonOfficer, LiaisonOfficerCommunication, LiaisonOfficers}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.orgdetails.OrganisationDetails
@@ -86,10 +87,11 @@ class EtmpController @Inject() (
       organisationEmail = Some(OrganisationEmail(organisationEmail = Some("test@example.com"), verified = Some(true))),
       isaProducts = Some(
         IsaProducts(
-          isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.StocksAndSharesIsas)),
+          isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.StocksAndSharesIsas, InnovativeFinanceIsas)),
           innovativeFinancialProducts = Some(Seq(InnovativeFinancialProduct.CrowdFundedDebentures)),
           p2pPlatform = None,
-          p2pPlatformNumber = None
+          p2pPlatformNumber = None,
+          underReview = zref == UnderReviewZref
         )
       ),
       certificatesOfAuthority = Some(
@@ -136,5 +138,6 @@ class EtmpController @Inject() (
 }
 
 object EtmpController {
-  private val NotFoundZref = "Z0404"
+  private val NotFoundZref    = "Z0404"
+  private val UnderReviewZref = "Z0202"
 }

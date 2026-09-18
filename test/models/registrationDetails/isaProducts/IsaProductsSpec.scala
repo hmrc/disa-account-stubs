@@ -27,14 +27,16 @@ class IsaProductsSpec extends AnyWordSpec with Matchers {
     isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.InnovativeFinanceIsas)),
     innovativeFinancialProducts = Some(Seq(InnovativeFinancialProduct.CrowdFundedDebentures)),
     p2pPlatform = Some("Test Platform"),
-    p2pPlatformNumber = Some("PN12345")
+    p2pPlatformNumber = Some("PN12345"),
+    underReview = true
   )
 
   private val json: JsObject = Json.obj(
     "isaProducts"                 -> Seq("cashIsas", "innovativeFinanceIsas"),
     "innovativeFinancialProducts" -> Seq("crowdfundedDebentures"),
     "p2pPlatform"                 -> "Test Platform",
-    "p2pPlatformNumber"           -> "PN12345"
+    "p2pPlatformNumber"           -> "PN12345",
+    "underReview"                 -> true
   )
 
   "IsaProducts" should {
