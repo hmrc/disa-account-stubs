@@ -101,6 +101,18 @@ The response is driven by the verificationCode field in the request body.
 | Internal error  | `SERERR`           | No body                                                                                                 | `500 Internal Server Error` | Simulates upstream/system failure |
 | Default failure | any other value    | `{ "status": "CODE_NOT_VALIDATED", "message": "Invalid verification code" }`                            | `400 Bad Request`           | Unknown/invalid code              |
 
+### GET /etmp/registration/:zref
+
+Simulates retrieving the registration details for an ISA manager (`retrieveRegistrationDetails`).
+
+The response is driven by the `zref` path parameter.
+
+| Scenario                       | `zref`          | Response                                                           | HTTP Status     | Description                                             |
+| ------------------------------ | --------------- | ------------------------------------------------------------------ | --------------- | ------------------------------------------------------- |
+| Not found                      | `Z0404`         | No body                                                            | `404 Not Found` | Simulates no registration details existing for the zref |
+| ISA product review in progress | `Z0202`         | Registration details with `isaProducts.underReview` set to `true`  | `200 OK`        | Simulates an ISA product review being in progress       |
+| Success (default)              | any other value | Registration details with `isaProducts.underReview` set to `false` | `200 OK`        | Successful retrieval, no ISA product review in progress |
+
 
 ### License
 
