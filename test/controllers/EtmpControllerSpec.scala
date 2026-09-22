@@ -48,6 +48,22 @@ class EtmpControllerSpec extends BaseUnitSpec {
 
       status(result) mustBe NOT_FOUND
     }
+
+    "flag the ISA products as under review for the under-review test zref" in {
+      val request = FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0202").url)
+
+      val journeyData = contentAsJson(route(app, request).get).as[RegistrationDetails]
+
+      journeyData.isaProducts.map(_.underReview) mustBe Some(true)
+    }
+
+    "not flag the ISA products as under review for any other zref" in {
+      val request = FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z1234").url)
+
+      val journeyData = contentAsJson(route(app, request).get).as[RegistrationDetails]
+
+      journeyData.isaProducts.map(_.underReview) mustBe Some(false)
+    }
   }
 
   "EtmpController.updateRegistrationDetails" should {
