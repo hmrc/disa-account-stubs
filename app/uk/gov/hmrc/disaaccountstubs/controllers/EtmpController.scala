@@ -96,9 +96,10 @@ class EtmpController @Inject() (
       isaProducts = Some(
         IsaProducts(
           isaProducts = Some(Seq(IsaProduct.CashIsas, IsaProduct.StocksAndSharesIsas, InnovativeFinanceIsas)),
-          innovativeFinancialProducts = Some(Seq(InnovativeFinancialProduct.CrowdFundedDebentures)),
-          p2pPlatform = None,
-          p2pPlatformNumber = None,
+          innovativeFinancialProducts =
+            Some(Seq(InnovativeFinancialProduct.PeertopeerLoansUsingAPlatformWith36hPermissions)),
+          p2pPlatform = Some("Test platform name"),
+          p2pPlatformNumber = Some("1234567"),
           underReview = zref == UnderReviewZref
         )
       ),
