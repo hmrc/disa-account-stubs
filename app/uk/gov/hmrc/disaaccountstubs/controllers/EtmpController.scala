@@ -113,7 +113,7 @@ class EtmpController @Inject() (
         LiaisonOfficers(
           liaisonOfficers = Seq(
             LiaisonOfficer(
-              id = UUID.randomUUID().toString,
+              id = "liaison-officer-1",
               fullName = Some("Test Officer"),
               phoneNumber = Some("01234567890"),
               communication = Set(LiaisonOfficerCommunication.ByEmail),
@@ -126,7 +126,7 @@ class EtmpController @Inject() (
         Signatories(
           signatories = Seq(
             Signatory(
-              id = UUID.randomUUID().toString,
+              id = "signatory-1",
               fullName = Some("Test Signatory"),
               jobTitle = Some("Director"),
               email = Some("signatory@example.com")
