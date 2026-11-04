@@ -120,8 +120,13 @@ The response is driven by the `zref` path parameter.
 | Scenario                       | `zref`          | Response                                                           | HTTP Status     | Description                                             |
 | ------------------------------ | --------------- | ------------------------------------------------------------------ | --------------- | ------------------------------------------------------- |
 | Not found                      | `Z0404`         | No body                                                            | `404 Not Found` | Simulates no registration details existing for the zref |
+| Internal error                 | `Z0500`         | No body (failure scenario for ACR validation)                                                        | `500 Internal Server Error` | Simulates an upstream failure |
+| Missing company name           | `Z0501`         | Registration details without `businessVerification.companyName`    | `200 OK`        | Simulates an incomplete company name (failure scenario for ACR validation) |
+| Missing FCA number             | `Z0502`         | Registration details without `organisationDetails.fcaNumber`       | `200 OK`        | Simulates an incomplete known fact (failure scenario for ACR validation) |
 | ISA product review in progress | `Z0202`         | Registration details with `isaProducts.underReview` set to `true`  | `200 OK`        | Simulates an ISA product review being in progress       |
 | Success (default)              | any other value | Registration details with `isaProducts.underReview` set to `false` | `200 OK`        | Successful retrieval, no ISA product review in progress |
+
+The `Z0500`, `Z0501` and `Z0502` fixtures are used by disa-account's Agent Services manual tests.
 
 
 ### License

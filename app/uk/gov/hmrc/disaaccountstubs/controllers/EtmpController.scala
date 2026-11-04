@@ -19,7 +19,7 @@ package uk.gov.hmrc.disaaccountstubs.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{NotFoundZref, UnderReviewZref}
+import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{InternalErrorZref, MissingCompanyNameZref, MissingFcaNumberZref, NotFoundZref, UnderReviewZref}
 import uk.gov.hmrc.disaaccountstubs.models.YesNoAnswer
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.IsaProduct.InnovativeFinanceIsas
@@ -49,7 +49,16 @@ class EtmpController @Inject() (
         )
         NotFound
 
-      case _ =>
+      case InternalErrorZref      => InternalServerError
+      case MissingCompanyNameZref =>
+        val details = registrationDetails(zref)
+        Ok(
+          Json.toJson(details.copy(businessVerification = details.businessVerification.map(_.copy(companyName = None))))
+        )
+      case MissingFcaNumberZref   =>
+        val details = registrationDetails(zref)
+        Ok(Json.toJson(details.copy(organisationDetails = details.organisationDetails.map(_.copy(fcaNumber = None)))))
+      case _                      =>
         logger.info(
           s"[EtmpController][retrieveRegistrationDetails] Returning registration details success response for zref: [$zref]"
         )
@@ -147,6 +156,9 @@ class EtmpController @Inject() (
 }
 
 object EtmpController {
-  private val NotFoundZref    = "Z0404"
-  private val UnderReviewZref = "Z0202"
+  private val InternalErrorZref      = "Z0500"
+  private val MissingCompanyNameZref = "Z0501"
+  private val MissingFcaNumberZref   = "Z0502"
+  private val NotFoundZref           = "Z0404"
+  private val UnderReviewZref        = "Z0202"
 }
