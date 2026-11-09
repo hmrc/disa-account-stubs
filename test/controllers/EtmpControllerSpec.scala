@@ -41,6 +41,23 @@ class EtmpControllerSpec extends BaseUnitSpec {
       journeyData.signatories.flatMap(_.signatories.headOption).flatMap(_.email) mustBe Some("signatory@example.com")
     }
 
+    "return 500 for the reserved upstream failure fixture" in {
+      val result = route(app, FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0500").url)).get
+      status(result) mustBe INTERNAL_SERVER_ERROR
+    }
+
+    "omit company name for the incomplete name fixture" in {
+      val result = route(app, FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0501").url)).get
+      status(result) mustBe OK
+      contentAsJson(result).as[RegistrationDetails].businessVerification.flatMap(_.companyName) mustBe None
+    }
+
+    "omit FCA number for the incomplete known fact fixture" in {
+      val result = route(app, FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0502").url)).get
+      status(result) mustBe OK
+      contentAsJson(result).as[RegistrationDetails].organisationDetails.flatMap(_.fcaNumber) mustBe None
+    }
+
     "return 404 when the zref is not found" in {
       val request = FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0404").url)
 
