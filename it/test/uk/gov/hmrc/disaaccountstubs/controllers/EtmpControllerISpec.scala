@@ -63,3 +63,13 @@ class EtmpControllerISpec
           .futureValue
 
       response.status shouldBe 404
+
+
+    "respond with 503 when the zref is the service-unavailable stub value" in:
+      val response =
+        httpClient
+          .get(url"$baseUrl/etmp/registration/Z0503")(HeaderCarrier())
+          .execute[HttpResponse]
+          .futureValue
+
+      response.status shouldBe 503

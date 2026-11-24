@@ -46,6 +46,11 @@ class EtmpControllerSpec extends BaseUnitSpec {
       status(result) mustBe INTERNAL_SERVER_ERROR
     }
 
+    "return 503 for the reserved service-unavailable fixture" in {
+      val result = route(app, FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0503").url)).get
+      status(result) mustBe SERVICE_UNAVAILABLE
+    }
+
     "omit company name for the incomplete name fixture" in {
       val result = route(app, FakeRequest(GET, EtmpController.retrieveRegistrationDetails("Z0501").url)).get
       status(result) mustBe OK

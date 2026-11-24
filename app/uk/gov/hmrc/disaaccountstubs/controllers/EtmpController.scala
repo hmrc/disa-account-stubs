@@ -19,7 +19,7 @@ package uk.gov.hmrc.disaaccountstubs.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{InternalErrorZref, MissingCompanyNameZref, MissingFcaNumberZref, NotFoundZref, UnderReviewZref}
+import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{InternalErrorZref, MissingCompanyNameZref, MissingFcaNumberZref, NotFoundZref, ServiceUnavailableZref, UnderReviewZref}
 import uk.gov.hmrc.disaaccountstubs.models.YesNoAnswer
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.IsaProduct.InnovativeFinanceIsas
@@ -49,6 +49,7 @@ class EtmpController @Inject() (
         )
         NotFound
 
+      case ServiceUnavailableZref => ServiceUnavailable
       case InternalErrorZref      => InternalServerError
       case MissingCompanyNameZref =>
         val details = registrationDetails(zref)
@@ -156,6 +157,7 @@ class EtmpController @Inject() (
 }
 
 object EtmpController {
+  private val ServiceUnavailableZref = "Z0503"
   private val InternalErrorZref      = "Z0500"
   private val MissingCompanyNameZref = "Z0501"
   private val MissingFcaNumberZref   = "Z0502"
