@@ -19,16 +19,16 @@ package uk.gov.hmrc.disaaccountstubs.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.{InternalErrorZref, MissingCompanyNameZref, MissingFcaNumberZref, NotFoundZref, UnderReviewZref}
+import uk.gov.hmrc.disaaccountstubs.controllers.EtmpController.*
 import uk.gov.hmrc.disaaccountstubs.models.YesNoAnswer
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.{CertificatesOfAuthority, CertificatesOfAuthorityYesNo, FcaArticles, FinancialOrganisation}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.certificatesofauthority.*
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.IsaProduct.InnovativeFinanceIsas
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.isaProducts.{InnovativeFinancialProduct, IsaProduct, IsaProducts}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.liaisonofficers.{LiaisonOfficer, LiaisonOfficerCommunication, LiaisonOfficers}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.orgdetails.OrganisationDetails
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.signatories.{Signatories, Signatory}
 import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.thirdparty.{ThirdParty, ThirdPartyOrganisations}
-import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.{BusinessVerification, CorrespondenceAddress, OrganisationEmail, RegistrationDetails, UpdateRegistrationDetailsRequest}
+import uk.gov.hmrc.disaaccountstubs.models.registrationDetails.*
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.Instant
@@ -49,6 +49,7 @@ class EtmpController @Inject() (
         )
         NotFound
 
+      case ServiceUnavailableZref => ServiceUnavailable
       case InternalErrorZref      => InternalServerError
       case MissingCompanyNameZref =>
         val details = registrationDetails(zref)
@@ -156,6 +157,7 @@ class EtmpController @Inject() (
 }
 
 object EtmpController {
+  private val ServiceUnavailableZref = "Z0503"
   private val InternalErrorZref      = "Z0500"
   private val MissingCompanyNameZref = "Z0501"
   private val MissingFcaNumberZref   = "Z0502"

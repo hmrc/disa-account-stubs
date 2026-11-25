@@ -120,6 +120,7 @@ The response is driven by the `zref` path parameter.
 | Scenario                       | `zref`          | Response                                                           | HTTP Status     | Description                                             |
 | ------------------------------ | --------------- | ------------------------------------------------------------------ | --------------- | ------------------------------------------------------- |
 | Not found                      | `Z0404`         | No body                                                            | `404 Not Found` | Simulates no registration details existing for the zref |
+| Service unavailable            | `Z0503`         | No body                                                            | `503 Service Unavailable` | Simulates HoD being unavailable for BTA client details |
 | Internal error                 | `Z0500`         | No body (failure scenario for ACR validation)                                                        | `500 Internal Server Error` | Simulates an upstream failure |
 | Missing company name           | `Z0501`         | Registration details without `businessVerification.companyName`    | `200 OK`        | Simulates an incomplete company name (failure scenario for ACR validation) |
 | Missing FCA number             | `Z0502`         | Registration details without `organisationDetails.fcaNumber`       | `200 OK`        | Simulates an incomplete known fact (failure scenario for ACR validation) |
